@@ -11,6 +11,7 @@ import java.io.IOException;
 /**
  * Created by ctang on 2017/2/5.
  * * http://ibuzzlog.blogspot.tw/2012/08/how-to-use-camera-in-android.html
+ * * http://ibuzzlog.blogspot.tw/2012/08/how-to-do-real-time-image-processing-in.html
  */
 
 public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCallback {
