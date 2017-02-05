@@ -1,36 +1,82 @@
 package tw.com.everydayenergy.m2njnicv;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+//import android.graphics.Bitmap;
+//import android.graphics.BitmapFactory;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+//import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+//import android.widget.Button;
+import android.widget.FrameLayout;
+//import android.widget.ImageView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import java.io.File;
 
-    private Button btnProc;
-    private ImageView imageView;
-    private Bitmap bmp;
+public class MainActivity extends AppCompatActivity { //implements View.OnClickListener {
 
-    public static native int[] grayProc(int[] pixels, int w, int h);
+    //private Button btnProc;
+    //private ImageView imageView;
+    //private Bitmap bmp;
 
-    static {
-        System.loadLibrary("gray-process");
-    }
+    //public static native int[] grayProc(int[] pixels, int w, int h);
+
+    //static {
+    //    System.loadLibrary("jnicv-process");
+    //}
+
+    private CameraPreview camPreview;
+    private FrameLayout mainLayout;
+
+    private Handler mHandler = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_main);
+        //btnProc = (Button) findViewById(R.id.btn_gray_process);
+        //imageView = (ImageView) findViewById(R.id.image_view);
+        //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.test);
+        //imageView.setImageBitmap(bmp);
+        //btnProc.setOnClickListener(this);
+        //Set this SPK Full screen
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //Set this APK no title
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        btnProc = (Button) findViewById(R.id.btn_gray_process);
-        imageView = (ImageView) findViewById(R.id.image_view);
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.test);
-        imageView.setImageBitmap(bmp);
-        btnProc.setOnClickListener(this);
+
+        SurfaceView camView = new SurfaceView(this);
+        SurfaceHolder camHolder = camView.getHolder();
+        camPreview = new CameraPreview(640, 480);
+
+        camHolder.addCallback(camPreview);
+        camHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+
+        mainLayout = (FrameLayout) findViewById(R.id.frameLayout1);
+        mainLayout.addView(camView, new FrameLayout.LayoutParams(640, 480));
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        if (event.getAction() == MotionEvent.ACTION_DOWN)
+        {
+            int X = (int)event.getX();
+            if ( X >= 640 )
+                mHandler.postDelayed(TakePicture, 300);
+            else
+                camPreview.CameraStartAutoFocus();
+        }
+        return true;
+    };
+    /*
     @Override
     public void onClick(View v) {
         int w = bmp.getWidth();
@@ -41,9 +87,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Bitmap resultImg = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         resultImg.setPixels(resultInt, 0, w, 0, 0, w, h);
         imageView.setImageBitmap(resultImg);
-    }
+    }*/
     @Override
     public void onResume(){
         super.onResume();
     }
+
+    private Runnable TakePicture = new Runnable()
+    {
+        String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+        String MyDirectory_path = extStorageDirectory;
+        String PictureFileName;
+        public void run()
+        {
+            File file = new File(MyDirectory_path);
+            if (!file.exists())
+                file.mkdirs();
+            PictureFileName = MyDirectory_path + "/MyPicture.jpg";
+            camPreview.CameraTakePicture(PictureFileName);
+        }
+    };
 }
