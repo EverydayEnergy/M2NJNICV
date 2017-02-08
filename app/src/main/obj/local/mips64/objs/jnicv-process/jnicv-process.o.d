@@ -141,7 +141,8 @@
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab/fast_marching_inl.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab/deblurring.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab/wobble_suppression.hpp \
-  /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab/ring_buffer.hpp
+  /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab/ring_buffer.hpp \
+  /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/core.hpp
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/opencv.hpp:
 
@@ -426,3 +427,5 @@
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab/wobble_suppression.hpp:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab/ring_buffer.hpp:
+
+/home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/core.hpp:

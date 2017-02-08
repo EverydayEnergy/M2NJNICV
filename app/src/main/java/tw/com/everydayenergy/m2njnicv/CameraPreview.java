@@ -2,8 +2,13 @@ package tw.com.everydayenergy.m2njnicv;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ImageFormat;
 import android.hardware.Camera;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.SurfaceHolder;
+import android.widget.ImageView;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,11 +21,24 @@ import java.io.IOException;
 
 public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCallback {
 
+    //private int PreviewSizeWidth;
+    //private int PreviewSizeHeight;
+
+    private static String TAG="CameraPreview";
+    private SurfaceHolder mSurfHolder;
+    //private Camera mCamera;
+
+    private Camera mCamera = null;
+    private ImageView MyCameraPreview = null;
+    private Bitmap bitmap = null;
+    private int[] pixels = null;
+    private byte[] FrameData = null;
+    private int imageFormat;
     private int PreviewSizeWidth;
     private int PreviewSizeHeight;
+    private boolean bProcessing = false;
 
-    private SurfaceHolder mSurfHolder;
-    private Camera mCamera;
+    private Handler mHandler = new Handler(Looper.getMainLooper());
 
     public CameraPreview(int PreviewlayoutWidth, int PreviewlayoutHeight)
     {
@@ -28,9 +46,31 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         PreviewSizeHeight = PreviewlayoutHeight;
     }
 
+    public CameraPreview(int PreviewlayoutWidth, int PreviewlayoutHeight, ImageView CameraPreview)
+    {
+        PreviewSizeWidth = PreviewlayoutWidth;
+        PreviewSizeHeight = PreviewlayoutHeight;
+        MyCameraPreview = CameraPreview;
+        bitmap = Bitmap.createBitmap(PreviewSizeWidth, PreviewSizeHeight, Bitmap.Config.ARGB_8888);
+        pixels = new int[PreviewSizeWidth * PreviewSizeHeight];
+    }
     @Override
     public void onPreviewFrame(byte[] data, Camera camera) {
+        // At preview mode, the frame data will push to here.
+        if (imageFormat == ImageFormat.NV21)
+        {
+            //We only accept the NV21(YUV420) format.
+            if ( !bProcessing )
+            {
+                FrameData = data;
+                mHandler.post(DoImageProcessing);
+            }
+        }
+    }
 
+    public void onPause()
+    {
+        mCamera.stopPreview();
     }
 
     @Override
@@ -51,6 +91,7 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
         Camera.Parameters parameters;
         mSurfHolder = holder;
 
@@ -61,13 +102,16 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         parameters.setPictureSize(PreviewSizeWidth, PreviewSizeHeight);
 
         // Turn on the camera flash.
+        /*
         String NowFlashMode = parameters.getFlashMode();
         if ( NowFlashMode != null )
             parameters.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
         // Set the auto-focus.
         String NowFocusMode = parameters.getFocusMode ();
         if ( NowFocusMode != null )
-            parameters.setFocusMode("auto");
+            parameters.setFocusMode("auto");*/
+
+        imageFormat = parameters.getPreviewFormat();
 
         mCamera.setParameters(parameters);
 
@@ -130,7 +174,7 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
 
     Camera.PictureCallback jpegPictureCallback = new Camera.PictureCallback()
     {
-        public void onPictureTaken(byte[] data, Camera arg1)
+        public void onPictureTaken(byte[] data, Camera camera)
         {
             // Save the picture.
             try {
@@ -142,6 +186,30 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
             {
                 e.printStackTrace();
             }
+        }
+    };
+
+    //
+    // Native JNI
+    //
+    public native boolean ImageProcessing(int width, int height, byte[] NV21FrameData, int [] pixels);
+
+    static
+    {
+        System.loadLibrary("jnicv-process");
+    }
+
+    private Runnable DoImageProcessing = new Runnable()
+    {
+        public void run()
+        {
+            Log.i(TAG, "DoImageProcessing():");
+            bProcessing = true;
+            ImageProcessing(PreviewSizeWidth, PreviewSizeHeight, FrameData, pixels);
+
+            bitmap.setPixels(pixels, 0, PreviewSizeWidth, 0, 0, PreviewSizeWidth, PreviewSizeHeight);
+            MyCameraPreview.setImageBitmap(bitmap);
+            bProcessing = false;
         }
     };
 }

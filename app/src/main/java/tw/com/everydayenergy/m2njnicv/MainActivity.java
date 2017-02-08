@@ -15,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 //import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 //import android.widget.ImageView;
 
 import java.io.File;
@@ -34,7 +35,13 @@ public class MainActivity extends AppCompatActivity { //implements View.OnClickL
     private CameraPreview camPreview;
     private FrameLayout mainLayout;
 
-    private Handler mHandler = new Handler(Looper.getMainLooper());
+    //private CameraPreview camPreview;
+    private ImageView MyCameraPreview = null;
+    //private FrameLayout mainLayout;
+    private int PreviewSizeWidth = 640;
+    private int PreviewSizeHeight= 480;
+
+    //private Handler mHandler = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,26 +52,42 @@ public class MainActivity extends AppCompatActivity { //implements View.OnClickL
         //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.test);
         //imageView.setImageBitmap(bmp);
         //btnProc.setOnClickListener(this);
-        //Set this SPK Full screen
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //Set this APK Full screen
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //Set this APK no title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
+        //
+        // Create my camera preview
+        //
+        MyCameraPreview = new ImageView(this);
+
         SurfaceView camView = new SurfaceView(this);
         SurfaceHolder camHolder = camView.getHolder();
-        camPreview = new CameraPreview(640, 480);
+        camPreview = new CameraPreview(PreviewSizeWidth, PreviewSizeHeight, MyCameraPreview);
 
         camHolder.addCallback(camPreview);
         camHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
+
         mainLayout = (FrameLayout) findViewById(R.id.frameLayout1);
-        mainLayout.addView(camView, new FrameLayout.LayoutParams(640, 480));
+        mainLayout.addView(camView, new FrameLayout.LayoutParams(PreviewSizeWidth, PreviewSizeHeight));
+        mainLayout.addView(MyCameraPreview, new FrameLayout.LayoutParams(PreviewSizeWidth, PreviewSizeHeight));
+
+        //SurfaceView camView = new SurfaceView(this);
+        //SurfaceHolder camHolder = camView.getHolder();
+        //camPreview = new CameraPreview(640, 480);
+
+        //camHolder.addCallback(camPreview);
+        //camHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+
+        //mainLayout = (FrameLayout) findViewById(R.id.frameLayout1);
+        //mainLayout.addView(camView, new FrameLayout.LayoutParams(640, 480));
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event)
+    //@Override
+    /*public boolean onTouchEvent(MotionEvent event)
     {
         if (event.getAction() == MotionEvent.ACTION_DOWN)
         {
@@ -75,7 +98,7 @@ public class MainActivity extends AppCompatActivity { //implements View.OnClickL
                 camPreview.CameraStartAutoFocus();
         }
         return true;
-    };
+    };*/
     /*
     @Override
     public void onClick(View v) {
@@ -90,10 +113,17 @@ public class MainActivity extends AppCompatActivity { //implements View.OnClickL
     }*/
     @Override
     public void onResume(){
+
         super.onResume();
     }
 
-    private Runnable TakePicture = new Runnable()
+    protected void onPause()
+    {
+        if ( camPreview != null)
+            camPreview.onPause();
+        super.onPause();
+    }
+    /*private Runnable TakePicture = new Runnable()
     {
         String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
         String MyDirectory_path = extStorageDirectory;
@@ -106,5 +136,5 @@ public class MainActivity extends AppCompatActivity { //implements View.OnClickL
             PictureFileName = MyDirectory_path + "/MyPicture.jpg";
             camPreview.CameraTakePicture(PictureFileName);
         }
-    };
+    };*/
 }
