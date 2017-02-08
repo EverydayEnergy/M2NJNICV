@@ -8,13 +8,15 @@
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc_c.h>
-
-extern "C" {
-
 using namespace cv;
 using namespace std;
+Mat * mCanny = NULL;
 
-JNIEXPORT jintArray JNICALL Java_tw_com_everydayenergy_m2njnicv_MainActivity_grayProc(JNIEnv *env, jclass obj, jintArray buf, jint w, jint h){
+
+
+
+//JNIEXPORT jintArray JNICALL Java_tw_com_everydayenergy_m2njnicv_MainActivity_grayProc(JNIEnv *env, jclass obj, jintArray buf, jint w, jint h){
+/*JNIEXPORT jintArray JNICALL Java_tw_com_everydayenergy_m2njnicv_MainActivity_grayProc(JNIEnv *env, jclass obj, jintArray buf, jint w, jint h){
     jboolean ptfalse = false;
     jint* srcBuf = env->GetIntArrayElements(buf, &ptfalse);
     if(srcBuf == NULL){
@@ -31,11 +33,14 @@ JNIEXPORT jintArray JNICALL Java_tw_com_everydayenergy_m2njnicv_MainActivity_gra
     env->SetIntArrayRegion(result, 0, size, srcBuf);
     env->ReleaseIntArrayElements(buf, srcBuf, 0);
     return result;
-}
+}*/
 
-Mat * mCanny = NULL;
 
-JNIEXPORT jboolean Java_tw_com_everydayenergy_m2njnicv_CameraPreview_ImageProcessing(JNIEnv* env, jobject thiz, jint width, jint height, jbyteArray NV21FrameData, jintArray outPixels)
+
+extern "C" JNIEXPORT jboolean JNICALL Java_tw_com_everydayenergy_m2njnicv_CameraPreview_ImageProcessing(
+    JNIEnv* env, jobject thiz,
+    jint width, jint height,
+    jbyteArray NV21FrameData, jintArray outPixels)
 {
   jbyte * pNV21FrameData = env->GetByteArrayElements(NV21FrameData, 0);
   jint * poutPixels = env->GetIntArrayElements(outPixels, 0);
@@ -57,6 +62,6 @@ JNIEXPORT jboolean Java_tw_com_everydayenergy_m2njnicv_CameraPreview_ImageProces
   env->ReleaseByteArrayElements(NV21FrameData, pNV21FrameData, 0);
   env->ReleaseIntArrayElements(outPixels, poutPixels, 0);
   return true;
-}
+
 
 }

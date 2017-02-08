@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout1"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    tools:context="tw.com.everydayenergy.m2njnicv.MainActivity">
+</FrameLayout>
+
+<!--RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -8,7 +17,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="tw.com.everydayenergy.m2njnicv.MainActivity">
+    tools:context="tw.com.everydayenergy.m2njnicv.MainActivity"-->
 
     <!--Button
         android:id="@+id/btn_gray_process"
@@ -24,10 +33,4 @@
         android:layout_marginTop="60dp"
         android:layout_centerHorizontal="true" /-->
 
-    <framelayout
-        android:id="@+id/frameLayout1"
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent"
-        android:orientation="vertical"
-        xmlns:android="http://schemas.android.com/apk/res/android"/>
-</RelativeLayout>
+<!--/RelativeLayout-->
