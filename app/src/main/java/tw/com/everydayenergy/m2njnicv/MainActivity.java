@@ -2,26 +2,31 @@ package tw.com.everydayenergy.m2njnicv;
 
 //import android.graphics.Bitmap;
 //import android.graphics.BitmapFactory;
+import android.app.Activity;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 //import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 //import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 //import android.widget.ImageView;
 
 import java.io.File;
 
-public class MainActivity extends AppCompatActivity { //implements View.OnClickListener {
+public class MainActivity extends Activity {//AppCompatActivity { //implements View.OnClickListener {
 
+    private static String TAG="MainActivity";
     //private Button btnProc;
     //private ImageView imageView;
     //private Bitmap bmp;
@@ -34,12 +39,15 @@ public class MainActivity extends AppCompatActivity { //implements View.OnClickL
 
     private CameraPreview camPreview;
     private FrameLayout mainLayout;
+    //private LinearLayout mainLayout;
 
     //private CameraPreview camPreview;
-    private ImageView MyCameraPreview = null;
+    private MyImageView MyCameraPreview = null;
+    private SurfaceView camView = null;
+    private SurfaceHolder camHolder = null;
     //private FrameLayout mainLayout;
-    private int PreviewSizeWidth = 640;
-    private int PreviewSizeHeight= 480;
+    private int PreviewSizeWidth = 0; //640;
+    private int PreviewSizeHeight= 0; //480;
 
     //private Handler mHandler = new Handler(Looper.getMainLooper());
 
@@ -61,19 +69,45 @@ public class MainActivity extends AppCompatActivity { //implements View.OnClickL
         //
         // Create my camera preview
         //
-        MyCameraPreview = new ImageView(this);
+        //MyCameraPreview = new ImageView(this);
+        MyCameraPreview = (MyImageView) findViewById(R.id.image_view);
 
-        SurfaceView camView = new SurfaceView(this);
-        SurfaceHolder camHolder = camView.getHolder();
-        camPreview = new CameraPreview(PreviewSizeWidth, PreviewSizeHeight, MyCameraPreview);
+        camView = (SurfaceView) findViewById(R.id.surface_view);
+        camHolder = camView.getHolder();
 
-        camHolder.addCallback(camPreview);
-        camHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        MyCameraPreview.setOnImageViewSizeChanged(new MyImageView.OnImageViewSizeChanged() {
+            @Override
+            public void invoke(ImageView v, final int w, final int h) {
+                // Do whatever you want with w and h which are non zero values ...
+                Log.i(TAG, "SizeChanged:W="+w+":H="+h);
+                if(camPreview == null) {
+                    PreviewSizeHeight = h;
+                    PreviewSizeWidth = w;
+                    camPreview = new CameraPreview(PreviewSizeWidth, PreviewSizeHeight, MyCameraPreview);
+
+                    camHolder.addCallback(camPreview);
+                    camHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+                }
+            }
+        });
+        //MyCameraPreview.setMinimumHeight(PreviewSizeHeight);
+        //PreviewSizeHeight = MyCameraPreview.getMeasuredHeight();
+        //MyCameraPreview.setMinimumWidth(PreviewSizeWidth);
+        //PreviewSizeWidth = MyCameraPreview.getMeasuredWidth();
+        //SurfaceView camView = new SurfaceView(this);
+        //camView.setMinimumHeight(PreviewSizeHeight);
+        //camView.setMinimumWidth(PreviewSizeWidth);
+
+        //camPreview = new CameraPreview(PreviewSizeWidth, PreviewSizeHeight, MyCameraPreview);
+
+        //camHolder.addCallback(camPreview);
+        //camHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
 
-        mainLayout = (FrameLayout) findViewById(R.id.frameLayout1);
-        mainLayout.addView(camView, new FrameLayout.LayoutParams(PreviewSizeWidth, PreviewSizeHeight));
-        mainLayout.addView(MyCameraPreview, new FrameLayout.LayoutParams(PreviewSizeWidth, PreviewSizeHeight));
+        mainLayout = (FrameLayout) findViewById(R.id.activity_main);
+        //mainLayout = (LinearLayout) findViewById(R.id.activity_main);
+        //mainLayout.addView(camView, new FrameLayout.LayoutParams(PreviewSizeWidth, PreviewSizeHeight));
+        //mainLayout.addView(MyCameraPreview, new FrameLayout.LayoutParams(PreviewSizeWidth, PreviewSizeHeight));
 
         //SurfaceView camView = new SurfaceView(this);
         //SurfaceHolder camHolder = camView.getHolder();
