@@ -44,9 +44,19 @@ extern "C" JNIEXPORT jboolean JNICALL Java_tw_com_everydayenergy_m2njnicv_Camera
 {
   jbyte * pNV21FrameData = env->GetByteArrayElements(NV21FrameData, 0);
   jint * poutPixels = env->GetIntArrayElements(outPixels, 0);
+  static jint w = 0;
+  static jint h = 0;
 
   if ( mCanny == NULL )
   {
+    w = width;
+    h = height;
+    mCanny = new Mat(height, width, CV_8UC1);
+  }
+  else if(w != width || h != height) {
+    w = width;
+    h = height;
+    delete mCanny;
     mCanny = new Mat(height, width, CV_8UC1);
   }
 

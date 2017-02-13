@@ -80,13 +80,17 @@ public class MainActivity extends Activity {//AppCompatActivity { //implements V
             public void invoke(ImageView v, final int w, final int h) {
                 // Do whatever you want with w and h which are non zero values ...
                 Log.i(TAG, "SizeChanged:W="+w+":H="+h);
+                PreviewSizeHeight = h;
+                PreviewSizeWidth = w;
                 if(camPreview == null) {
-                    PreviewSizeHeight = h;
-                    PreviewSizeWidth = w;
                     camPreview = new CameraPreview(PreviewSizeWidth, PreviewSizeHeight, MyCameraPreview);
-
                     camHolder.addCallback(camPreview);
                     camHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+                }
+                else {
+                    if((h != PreviewSizeHeight) || (w != PreviewSizeWidth)) {
+                        camPreview.setNewSize(PreviewSizeWidth, PreviewSizeHeight);
+                    }
                 }
             }
         });

@@ -51,16 +51,35 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
 
     public CameraPreview(int PreviewlayoutWidth, int PreviewlayoutHeight, ImageView CameraPreview)
     {
-        PreviewSizeWidth = PreviewlayoutWidth;
-        PreviewSizeHeight = PreviewlayoutHeight;
+        //PreviewSizeWidth = PreviewlayoutWidth;
+        //PreviewSizeHeight = PreviewlayoutHeight;
         MyCameraPreview = CameraPreview;
-        if(PreviewSizeWidth >= PreviewSizeHeight) {
+        setNewSize(PreviewlayoutWidth, PreviewlayoutHeight);
+        //if(PreviewSizeWidth >= PreviewSizeHeight) {
+        //    bHorizontal = true;
+        //}
+        //else {
+        //    bHorizontal = false;
+        //}
+        //bitmap = Bitmap.createBitmap(PreviewSizeWidth, PreviewSizeHeight, Bitmap.Config.ARGB_8888);
+        //pixels = new int[PreviewSizeWidth * PreviewSizeHeight];
+    }
+    public void setNewSize(final int w, final int h){
+        PreviewSizeWidth = w;
+        PreviewSizeHeight = h;
+        if(w >= h) {
             bHorizontal = true;
         }
         else {
             bHorizontal = false;
         }
+        if(bitmap != null){
+            bitmap = null;
+        }
         bitmap = Bitmap.createBitmap(PreviewSizeWidth, PreviewSizeHeight, Bitmap.Config.ARGB_8888);
+        if(pixels != null) {
+            pixels = null;
+        }
         pixels = new int[PreviewSizeWidth * PreviewSizeHeight];
     }
     @Override
@@ -106,9 +125,11 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
 
         parameters = mCamera.getParameters();
         // Set the camera preview size
-        parameters.setPreviewSize(PreviewSizeWidth, PreviewSizeHeight);
+        //parameters.setPreviewSize(PreviewSizeWidth, PreviewSizeHeight);
+        parameters.setPreviewSize(width, height);
         // Set the take picture size, you can set the large size of the camera supported.
-        parameters.setPictureSize(PreviewSizeWidth, PreviewSizeHeight);
+        //parameters.setPictureSize(PreviewSizeWidth, PreviewSizeHeight);
+        parameters.setPictureSize(width, height);
 
         // Turn on the camera flash.
         /*
@@ -232,6 +253,8 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
 
     static
     {
+        System.loadLibrary("gnustl_shared");
+        System.loadLibrary("opencv_java3");
         System.loadLibrary("jnicv-process");
     }
 
