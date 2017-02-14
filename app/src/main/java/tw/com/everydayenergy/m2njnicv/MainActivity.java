@@ -3,6 +3,7 @@ package tw.com.everydayenergy.m2njnicv;
 //import android.graphics.Bitmap;
 //import android.graphics.BitmapFactory;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
@@ -23,10 +24,12 @@ import android.widget.LinearLayout;
 //import android.widget.ImageView;
 
 import java.io.File;
+import java.util.List;
 
 public class MainActivity extends Activity {//AppCompatActivity { //implements View.OnClickListener {
 
     private static String TAG="MainActivity";
+    private static Activity mActivity = null;
     //private Button btnProc;
     //private ImageView imageView;
     //private Bitmap bmp;
@@ -71,7 +74,7 @@ public class MainActivity extends Activity {//AppCompatActivity { //implements V
         //
         //MyCameraPreview = new ImageView(this);
         MyCameraPreview = (MyImageView) findViewById(R.id.image_view);
-
+        mActivity = this;
         camView = (SurfaceView) findViewById(R.id.surface_view);
         camHolder = camView.getHolder();
 
@@ -82,6 +85,7 @@ public class MainActivity extends Activity {//AppCompatActivity { //implements V
                 Log.i(TAG, "SizeChanged:W="+w+":H="+h);
                 PreviewSizeHeight = h;
                 PreviewSizeWidth = w;
+
                 if(camPreview == null) {
                     camPreview = new CameraPreview(PreviewSizeWidth, PreviewSizeHeight, MyCameraPreview);
                     camHolder.addCallback(camPreview);
@@ -90,6 +94,7 @@ public class MainActivity extends Activity {//AppCompatActivity { //implements V
                 else {
                     if((h != PreviewSizeHeight) || (w != PreviewSizeWidth)) {
                         camPreview.setNewSize(PreviewSizeWidth, PreviewSizeHeight);
+                        camPreview.setCameraDisplayOrientation(mActivity);
                     }
                 }
             }

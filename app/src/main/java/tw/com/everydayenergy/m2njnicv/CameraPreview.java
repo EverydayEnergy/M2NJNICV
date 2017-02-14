@@ -1,6 +1,7 @@
 package tw.com.everydayenergy.m2njnicv;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
@@ -14,6 +15,9 @@ import android.widget.ImageView;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
+
+import static android.content.Context.ACTIVITY_SERVICE;
 
 /**
  * Created by ctang on 2017/2/5.
@@ -219,12 +223,27 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         }
     };
 
-    public static void setCameraDisplayOrientation(Activity activity, int cameraId, android.hardware.Camera camera) {
+    public void setCameraDisplayOrientation(Activity activity) {//, int cameraId, android.hardware.Camera camera) {
 
-        android.hardware.Camera.CameraInfo info =
-                new android.hardware.Camera.CameraInfo();
+        android.hardware.Camera.CameraInfo info = new android.hardware.Camera.CameraInfo();
 
+        //Camera.Parameters parameters = mCamera.getParameters();
+        //parameters.
+        int cameraId = -1;
+        // Search for the front facing camera
+        int numberOfCameras = Camera.getNumberOfCameras();
+        for (int i = 0; i < numberOfCameras; i++) {
+            //Camera.CameraInfo info = new Camera.CameraInfo();
+            Camera.getCameraInfo(i, info);
+            if (info.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
+                Log.d(TAG, "Camera found");
+                cameraId = i;
+                break;
+            }
+        }
         android.hardware.Camera.getCameraInfo(cameraId, info);
+
+        //Activity activity;
 
         int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
         int degrees = 0;
@@ -243,7 +262,7 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         } else {  // back-facing
             result = (info.orientation - degrees + 360) % 360;
         }
-        camera.setDisplayOrientation(result);
+        mCamera.setDisplayOrientation(result);
     }
 
     //
