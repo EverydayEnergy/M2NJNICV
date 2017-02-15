@@ -29,7 +29,7 @@ import java.util.List;
 public class MainActivity extends Activity {//AppCompatActivity { //implements View.OnClickListener {
 
     private static String TAG="MainActivity";
-    private static Activity mActivity = null;
+    private Activity mActivity = null;
     //private Button btnProc;
     //private ImageView imageView;
     //private Bitmap bmp;
@@ -40,7 +40,7 @@ public class MainActivity extends Activity {//AppCompatActivity { //implements V
     //    System.loadLibrary("jnicv-process");
     //}
 
-    private CameraPreview camPreview;
+    private CameraPreview camPreview = null;
     private FrameLayout mainLayout;
     //private LinearLayout mainLayout;
 
@@ -83,18 +83,22 @@ public class MainActivity extends Activity {//AppCompatActivity { //implements V
             public void invoke(ImageView v, final int w, final int h) {
                 // Do whatever you want with w and h which are non zero values ...
                 Log.i(TAG, "SizeChanged:W="+w+":H="+h);
-                PreviewSizeHeight = h;
-                PreviewSizeWidth = w;
 
                 if(camPreview == null) {
-                    camPreview = new CameraPreview(PreviewSizeWidth, PreviewSizeHeight, MyCameraPreview);
+                    Log.i(TAG, "new camPreview");
+                    PreviewSizeHeight = h;
+                    PreviewSizeWidth = w;
+                    camPreview = new CameraPreview(PreviewSizeWidth, PreviewSizeHeight, MyCameraPreview, mActivity);
                     camHolder.addCallback(camPreview);
                     camHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+                    //camPreview.setCameraDisplayOrientation(mActivity);
                 }
                 else {
                     if((h != PreviewSizeHeight) || (w != PreviewSizeWidth)) {
+                        PreviewSizeHeight = h;
+                        PreviewSizeWidth = w;
                         camPreview.setNewSize(PreviewSizeWidth, PreviewSizeHeight);
-                        camPreview.setCameraDisplayOrientation(mActivity);
+                        //camPreview.setCameraDisplayOrientation(mActivity);
                     }
                 }
             }

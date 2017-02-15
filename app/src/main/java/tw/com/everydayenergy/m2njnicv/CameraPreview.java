@@ -36,6 +36,7 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
 
     private Camera mCamera = null;
     private ImageView MyCameraPreview = null;
+    private Activity mActivity = null;
     private Bitmap bitmap = null;
     private int[] pixels = null;
     private byte[] FrameData = null;
@@ -47,17 +48,18 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
 
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
-    public CameraPreview(int PreviewlayoutWidth, int PreviewlayoutHeight)
+    /*public CameraPreview(int PreviewlayoutWidth, int PreviewlayoutHeight)
     {
         PreviewSizeWidth = PreviewlayoutWidth;
         PreviewSizeHeight = PreviewlayoutHeight;
-    }
+    }*/
 
-    public CameraPreview(int PreviewlayoutWidth, int PreviewlayoutHeight, ImageView CameraPreview)
+    public CameraPreview(int PreviewlayoutWidth, int PreviewlayoutHeight, ImageView CameraPreview, Activity activity)
     {
         //PreviewSizeWidth = PreviewlayoutWidth;
         //PreviewSizeHeight = PreviewlayoutHeight;
         MyCameraPreview = CameraPreview;
+        mActivity = activity;
         setNewSize(PreviewlayoutWidth, PreviewlayoutHeight);
         //if(PreviewSizeWidth >= PreviewSizeHeight) {
         //    bHorizontal = true;
@@ -113,6 +115,7 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
             // If did not set the SurfaceHolder, the preview area will be black.
             mCamera.setPreviewDisplay(holder);
             mCamera.setPreviewCallback(this);
+            //setCameraDisplayOrientation(mActivity, -1, mCamera);
         }
         catch (IOException e)
         {
@@ -150,6 +153,8 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         mCamera.setParameters(parameters);
 
         mCamera.startPreview();
+
+        setCameraDisplayOrientation(mActivity, -1, mCamera);
     }
 
     @Override
@@ -223,13 +228,13 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         }
     };
 
-    public void setCameraDisplayOrientation(Activity activity) {//, int cameraId, android.hardware.Camera camera) {
+    public void setCameraDisplayOrientation(Activity activity, int cameraId, android.hardware.Camera camera) {
 
         android.hardware.Camera.CameraInfo info = new android.hardware.Camera.CameraInfo();
 
         //Camera.Parameters parameters = mCamera.getParameters();
         //parameters.
-        int cameraId = -1;
+        //int cameraId = -1;
         // Search for the front facing camera
         int numberOfCameras = Camera.getNumberOfCameras();
         for (int i = 0; i < numberOfCameras; i++) {
@@ -262,7 +267,14 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         } else {  // back-facing
             result = (info.orientation - degrees + 360) % 360;
         }
-        mCamera.setDisplayOrientation(result);
+        Log.i(TAG, "setDisplayOrientation:"+result+" d:"+degrees);
+        result = 270;
+        if(camera != null) {
+            camera.setDisplayOrientation(result);
+        }
+        else if(mCamera != null) {
+            mCamera.setDisplayOrientation(result);
+        }
     }
 
     //
@@ -281,7 +293,7 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
     {
         public void run()
         {
-            Log.i(TAG, "DoImageProcessing():");
+            //Log.i(TAG, "DoImageProcessing():");
             bProcessing = true;
             ImageProcessing(PreviewSizeWidth, PreviewSizeHeight, FrameData, pixels);
 
