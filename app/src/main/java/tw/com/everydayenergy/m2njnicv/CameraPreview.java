@@ -268,7 +268,7 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
             result = (info.orientation - degrees + 360) % 360;
         }
         Log.i(TAG, "setDisplayOrientation:"+result+" d:"+degrees);
-        result = 270;
+        //result = 270;
         if(camera != null) {
             camera.setDisplayOrientation(result);
         }
