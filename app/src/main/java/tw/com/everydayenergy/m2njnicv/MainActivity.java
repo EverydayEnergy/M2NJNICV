@@ -97,7 +97,7 @@ public class MainActivity extends Activity {//AppCompatActivity { //implements V
                     if((h != PreviewSizeHeight) || (w != PreviewSizeWidth)) {
                         PreviewSizeHeight = h;
                         PreviewSizeWidth = w;
-                        camPreview.setNewSize(PreviewSizeWidth, PreviewSizeHeight);
+                        //camPreview.setNewSize(PreviewSizeWidth, PreviewSizeHeight);
                         //camPreview.setCameraDisplayOrientation(mActivity);
                     }
                 }

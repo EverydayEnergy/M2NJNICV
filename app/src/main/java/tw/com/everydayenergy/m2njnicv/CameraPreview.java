@@ -71,6 +71,8 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         //pixels = new int[PreviewSizeWidth * PreviewSizeHeight];
     }
     public void setNewSize(final int w, final int h){
+        int oldSize = PreviewSizeWidth * PreviewSizeHeight;
+        int newSize = w * h;
         PreviewSizeWidth = w;
         PreviewSizeHeight = h;
         if(w >= h) {
@@ -80,9 +82,17 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
             bHorizontal = false;
         }
         if(bitmap != null){
-            bitmap = null;
+            //Bitmap.Config config = bitmap.getConfig();
+            //bitmap.reconfigure(PreviewSizeWidth, PreviewSizeHeight, config);
+            //bitmap = null;
+            //bitmap.setWidth(PreviewSizeWidth);
+            Bitmap oldBitmap = bitmap;
+            bitmap = Bitmap.createScaledBitmap(oldBitmap, PreviewSizeWidth, PreviewSizeHeight, false);
+            oldBitmap.recycle();
         }
-        bitmap = Bitmap.createBitmap(PreviewSizeWidth, PreviewSizeHeight, Bitmap.Config.ARGB_8888);
+        else {
+            bitmap = Bitmap.createBitmap(PreviewSizeWidth, PreviewSizeHeight, Bitmap.Config.ARGB_8888);
+        }
         if(pixels != null) {
             pixels = null;
         }
@@ -102,8 +112,8 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         }
     }
 
-    public void onPause()
-    {
+    public void onPause() {
+
         mCamera.stopPreview();
     }
 
@@ -126,9 +136,28 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
+        Log.i(TAG, "surfaceChanged:");
         Camera.Parameters parameters;
         mSurfHolder = holder;
+
+        // If your preview can change or rotate, take care of those events here.
+        // Make sure to stop the preview before resizing or reformatting it.
+
+        if (mSurfHolder.getSurface() == null){
+            // preview surface does not exist
+            return;
+        }
+
+        // stop preview before making changes
+        try {
+            mCamera.stopPreview();
+        }
+        catch (Exception e){
+            // ignore: tried to stop a non-existent preview
+        }
+
+        // set preview size and make any resize, rotate or
+        // reformatting changes here
 
         parameters = mCamera.getParameters();
         // Set the camera preview size
@@ -152,9 +181,19 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
 
         mCamera.setParameters(parameters);
 
-        mCamera.startPreview();
-
         setCameraDisplayOrientation(mActivity, -1, mCamera);
+
+        // start preview with new settings
+        try {
+            mCamera.setPreviewDisplay(mSurfHolder);
+            mCamera.startPreview();
+
+        } catch (Exception e){
+            Log.d(TAG, "Error starting camera preview: " + e.getMessage());
+        }
+        //mCamera.startPreview();
+
+        //setCameraDisplayOrientation(mActivity, -1, mCamera);
     }
 
     @Override
@@ -163,6 +202,7 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         mCamera.stopPreview();
         mCamera.release();
         mCamera = null;
+        Log.i(TAG, "surfaceDestroyed:");
     }
 
     private boolean TakePicture;
@@ -267,8 +307,8 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         } else {  // back-facing
             result = (info.orientation - degrees + 360) % 360;
         }
-        Log.i(TAG, "setDisplayOrientation:"+result+" d:"+degrees);
-        //result = 270;
+        Log.i(TAG, "setDisplayOrientation:"+result+" d:"+degrees+" o:"+info.orientation);
+        //result = 0;
         if(camera != null) {
             camera.setDisplayOrientation(result);
         }
@@ -295,10 +335,10 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         {
             //Log.i(TAG, "DoImageProcessing():");
             bProcessing = true;
-            ImageProcessing(PreviewSizeWidth, PreviewSizeHeight, FrameData, pixels);
+            //ImageProcessing(PreviewSizeWidth, PreviewSizeHeight, FrameData, pixels);
 
-            bitmap.setPixels(pixels, 0, PreviewSizeWidth, 0, 0, PreviewSizeWidth, PreviewSizeHeight);
-            MyCameraPreview.setImageBitmap(bitmap);
+            //bitmap.setPixels(pixels, 0, PreviewSizeWidth, 0, 0, PreviewSizeWidth, PreviewSizeHeight);
+            //MyCameraPreview.setImageBitmap(bitmap);
             bProcessing = false;
         }
     };
