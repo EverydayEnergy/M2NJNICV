@@ -71,8 +71,8 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         //pixels = new int[PreviewSizeWidth * PreviewSizeHeight];
     }
     public void setNewSize(final int w, final int h){
-        int oldSize = PreviewSizeWidth * PreviewSizeHeight;
-        int newSize = w * h;
+        //int oldSize = PreviewSizeWidth * PreviewSizeHeight;
+        //int newSize = w * h;
         PreviewSizeWidth = w;
         PreviewSizeHeight = h;
         if(w >= h) {
@@ -162,10 +162,15 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         parameters = mCamera.getParameters();
         // Set the camera preview size
         //parameters.setPreviewSize(PreviewSizeWidth, PreviewSizeHeight);
-        parameters.setPreviewSize(width, height);
+        if(bHorizontal) {
+            parameters.setPreviewSize(width, height);
+        }
+        else {
+            parameters.setPreviewSize(height, width);
+        }
         // Set the take picture size, you can set the large size of the camera supported.
         //parameters.setPictureSize(PreviewSizeWidth, PreviewSizeHeight);
-        parameters.setPictureSize(width, height);
+        //parameters.setPictureSize(width, height);
 
         // Turn on the camera flash.
         /*
