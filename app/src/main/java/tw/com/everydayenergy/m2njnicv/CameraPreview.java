@@ -5,6 +5,7 @@ import android.app.ActivityManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
+import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.os.Handler;
 import android.os.Looper;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static android.content.Context.ACTIVITY_SERVICE;
+import static android.graphics.Bitmap.createBitmap;
 
 /**
  * Created by ctang on 2017/2/5.
@@ -58,8 +60,8 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
     {
         //PreviewSizeWidth = PreviewlayoutWidth;
         //PreviewSizeHeight = PreviewlayoutHeight;
-        MyCameraPreview = CameraPreview;
-        mActivity = activity;
+        setImageView(CameraPreview);
+        setActivity(activity);
         setNewSize(PreviewlayoutWidth, PreviewlayoutHeight);
         //if(PreviewSizeWidth >= PreviewSizeHeight) {
         //    bHorizontal = true;
@@ -70,11 +72,19 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         //bitmap = Bitmap.createBitmap(PreviewSizeWidth, PreviewSizeHeight, Bitmap.Config.ARGB_8888);
         //pixels = new int[PreviewSizeWidth * PreviewSizeHeight];
     }
+    public void setImageView(ImageView CameraPreview) {
+        MyCameraPreview = CameraPreview;
+    }
+    public void setActivity(Activity activity) {
+        mActivity = activity;
+    }
     public void setNewSize(final int w, final int h){
-        //int oldSize = PreviewSizeWidth * PreviewSizeHeight;
-        //int newSize = w * h;
+        int oldSize = PreviewSizeWidth * PreviewSizeHeight;
+        int newSize = w * h;
         PreviewSizeWidth = w;
         PreviewSizeHeight = h;
+        if(w == 0 || h == 0)
+            return;
         if(w >= h) {
             bHorizontal = true;
         }
@@ -84,23 +94,30 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         if(bitmap != null){
             //Bitmap.Config config = bitmap.getConfig();
             //bitmap.reconfigure(PreviewSizeWidth, PreviewSizeHeight, config);
-            //bitmap = null;
+            bitmap = null;
             //bitmap.setWidth(PreviewSizeWidth);
-            Bitmap oldBitmap = bitmap;
-            bitmap = Bitmap.createScaledBitmap(oldBitmap, PreviewSizeWidth, PreviewSizeHeight, false);
-            oldBitmap.recycle();
+            //Bitmap oldBitmap = bitmap;
+            //bitmap = Bitmap.createScaledBitmap(oldBitmap, PreviewSizeWidth, PreviewSizeHeight, false);
+            //bitmap = Bitmap.createBitmap(PreviewSizeWidth, PreviewSizeHeight, Bitmap.Config.ARGB_8888);
+            //oldBitmap.recycle();
+        }
+        if(bHorizontal) {
+            bitmap = createBitmap(PreviewSizeWidth, PreviewSizeHeight, Bitmap.Config.ARGB_8888);
         }
         else {
-            bitmap = Bitmap.createBitmap(PreviewSizeWidth, PreviewSizeHeight, Bitmap.Config.ARGB_8888);
+            bitmap = createBitmap(PreviewSizeHeight, PreviewSizeWidth, Bitmap.Config.ARGB_8888);
         }
-        if(pixels != null) {
+        if(pixels != null && oldSize != newSize) {
             pixels = null;
         }
-        pixels = new int[PreviewSizeWidth * PreviewSizeHeight];
+        if(pixels == null) {
+            pixels = new int[PreviewSizeWidth * PreviewSizeHeight];
+        }
     }
     @Override
     public void onPreviewFrame(byte[] data, Camera camera) {
         // At preview mode, the frame data will push to here.
+        //Log.i(TAG, "onPreviewFrame:");
         if (imageFormat == ImageFormat.NV21)
         {
             //We only accept the NV21(YUV420) format.
@@ -119,6 +136,7 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+        Log.i(TAG, "surfaceCreated:");
         mCamera = Camera.open();
         try
         {
@@ -136,7 +154,6 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-        Log.i(TAG, "surfaceChanged:");
         Camera.Parameters parameters;
         mSurfHolder = holder;
 
@@ -159,7 +176,16 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         // set preview size and make any resize, rotate or
         // reformatting changes here
 
+        int w = MyCameraPreview.getWidth();
+        int h = MyCameraPreview.getHeight();
+        setNewSize(w, h);
+
+        Log.i(TAG, "surfaceChanged: i_w:"+w+", s_w:"+width+", i_h:"+h+", s_h:"+height);
+
+
         parameters = mCamera.getParameters();
+        //List<Camera.Size> previewSizes = parameters.getSupportedPreviewSizes();
+        //previewSizes.sort()
         // Set the camera preview size
         //parameters.setPreviewSize(PreviewSizeWidth, PreviewSizeHeight);
         if(bHorizontal) {
@@ -191,6 +217,9 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         // start preview with new settings
         try {
             mCamera.setPreviewDisplay(mSurfHolder);
+            mSurfHolder.addCallback(this);
+            mSurfHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+            mCamera.setPreviewCallback(this);
             mCamera.startPreview();
 
         } catch (Exception e){
@@ -338,12 +367,34 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
     {
         public void run()
         {
-            //Log.i(TAG, "DoImageProcessing():");
             bProcessing = true;
-            //ImageProcessing(PreviewSizeWidth, PreviewSizeHeight, FrameData, pixels);
+            int w = PreviewSizeWidth;
+            int h = PreviewSizeHeight;
+            if(!bHorizontal) {
+                w = PreviewSizeHeight;
+                h = PreviewSizeWidth;
+            }
+            if(w > 0 && h > 0 && w <= bitmap.getWidth() && h <= bitmap.getHeight()) {
+                //if(!bHorizontal) {
+                //    h = PreviewSizeWidth;
+                //    w = PreviewSizeHeight;
+                //}
+                //Log.i(TAG, "DoImageProcessing() before: w:"+w+", h:"+h);
+                ImageProcessing(w, h, FrameData, pixels);
 
-            //bitmap.setPixels(pixels, 0, PreviewSizeWidth, 0, 0, PreviewSizeWidth, PreviewSizeHeight);
-            //MyCameraPreview.setImageBitmap(bitmap);
+                //Log.i(TAG, "DoImageProcessing() after: w:"+w+", h:"+h+", bmp_w:"+bitmap.getWidth()+", bmp_h:"+bitmap.getHeight());
+                bitmap.setPixels(pixels, 0, w, 0, 0, w, h);
+                if(!bHorizontal) {
+                    //bitmap.setPixels(pixels, 0, w, 0, 0, w, h);
+                    Matrix m = new Matrix();
+                    m.postRotate(90);
+                    bitmap = createBitmap(bitmap, 0, 0, w, h, m, true);
+                }
+                /*else {
+                    bitmap.setPixels(pixels, 0, w, 0, 0, w, h);
+                }*/
+                MyCameraPreview.setImageBitmap(bitmap);
+            }
             bProcessing = false;
         }
     };

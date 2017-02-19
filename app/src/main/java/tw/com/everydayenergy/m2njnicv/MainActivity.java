@@ -40,7 +40,7 @@ public class MainActivity extends Activity {//AppCompatActivity { //implements V
     //    System.loadLibrary("jnicv-process");
     //}
 
-    private CameraPreview camPreview = null;
+    private static CameraPreview camPreview = null;
     private FrameLayout mainLayout;
     //private LinearLayout mainLayout;
 
@@ -56,6 +56,7 @@ public class MainActivity extends Activity {//AppCompatActivity { //implements V
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
         //btnProc = (Button) findViewById(R.id.btn_gray_process);
@@ -78,7 +79,23 @@ public class MainActivity extends Activity {//AppCompatActivity { //implements V
         camView = (SurfaceView) findViewById(R.id.surface_view);
         camHolder = camView.getHolder();
 
-        MyCameraPreview.setOnImageViewSizeChanged(new MyImageView.OnImageViewSizeChanged() {
+        if(camPreview == null) {
+            Log.i(TAG, "new camPreview");
+            PreviewSizeHeight = 0;
+            PreviewSizeWidth = 0;
+            camPreview = new CameraPreview(PreviewSizeWidth, PreviewSizeHeight, MyCameraPreview, mActivity);
+            camHolder.addCallback(camPreview);
+            camHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+            //camPreview.setCameraDisplayOrientation(mActivity);
+        }
+        else {
+            camPreview.setImageView(MyCameraPreview);
+            camPreview.setActivity(mActivity);
+            camHolder.addCallback(camPreview);
+            camHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        }
+
+        /*MyCameraPreview.setOnImageViewSizeChanged(new MyImageView.OnImageViewSizeChanged() {
             @Override
             public void invoke(ImageView v, final int w, final int h) {
                 // Do whatever you want with w and h which are non zero values ...
@@ -97,12 +114,16 @@ public class MainActivity extends Activity {//AppCompatActivity { //implements V
                     if((h != PreviewSizeHeight) || (w != PreviewSizeWidth)) {
                         PreviewSizeHeight = h;
                         PreviewSizeWidth = w;
-                        //camPreview.setNewSize(PreviewSizeWidth, PreviewSizeHeight);
+                        camPreview.setImageView(MyCameraPreview);
+                        camPreview.setActivity(mActivity);
+                        camPreview.setNewSize(PreviewSizeWidth, PreviewSizeHeight);
+                        camHolder.addCallback(camPreview);
+                        camHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
                         //camPreview.setCameraDisplayOrientation(mActivity);
                     }
                 }
             }
-        });
+        });*/
         //MyCameraPreview.setMinimumHeight(PreviewSizeHeight);
         //PreviewSizeHeight = MyCameraPreview.getMeasuredHeight();
         //MyCameraPreview.setMinimumWidth(PreviewSizeWidth);

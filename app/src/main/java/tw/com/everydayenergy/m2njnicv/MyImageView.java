@@ -30,8 +30,9 @@ public class MyImageView extends ImageView {
             return;
         }
         else{
-            if(sizeCallback != null)
-                sizeCallback.invoke(this, w, h);
+            if(sizeCallback != null) {
+                //sizeCallback.invoke(this, w, h);
+            }
         }
 
     }
