@@ -16,6 +16,8 @@ import android.widget.ImageView;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static android.content.Context.ACTIVITY_SERVICE;
@@ -46,7 +48,10 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
     private int PreviewSizeWidth;
     private int PreviewSizeHeight;
     private boolean bProcessing = false;
-    private boolean bHorizontal = true;
+    private boolean bChangingSize = false;
+    //private boolean bHorizontal = true;
+    //private Camera.Size mHSize;
+    //private Camera.Size mVSize;
 
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
@@ -79,18 +84,14 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
         mActivity = activity;
     }
     public void setNewSize(final int w, final int h){
+        Log.i(TAG, "setNewSize: w:"+w+", h:"+h);
+        if(w == 0 || h == 0)
+            return;
         int oldSize = PreviewSizeWidth * PreviewSizeHeight;
         int newSize = w * h;
         PreviewSizeWidth = w;
         PreviewSizeHeight = h;
-        if(w == 0 || h == 0)
-            return;
-        if(w >= h) {
-            bHorizontal = true;
-        }
-        else {
-            bHorizontal = false;
-        }
+
         if(bitmap != null){
             //Bitmap.Config config = bitmap.getConfig();
             //bitmap.reconfigure(PreviewSizeWidth, PreviewSizeHeight, config);
@@ -101,12 +102,7 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
             //bitmap = Bitmap.createBitmap(PreviewSizeWidth, PreviewSizeHeight, Bitmap.Config.ARGB_8888);
             //oldBitmap.recycle();
         }
-        if(bHorizontal) {
-            bitmap = createBitmap(PreviewSizeWidth, PreviewSizeHeight, Bitmap.Config.ARGB_8888);
-        }
-        else {
-            bitmap = createBitmap(PreviewSizeHeight, PreviewSizeWidth, Bitmap.Config.ARGB_8888);
-        }
+        bitmap = createBitmap(PreviewSizeWidth, PreviewSizeHeight, Bitmap.Config.ARGB_8888);
         if(pixels != null && oldSize != newSize) {
             pixels = null;
         }
@@ -131,7 +127,12 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
 
     public void onPause() {
 
-        mCamera.stopPreview();
+        try {
+            mCamera.stopPreview();
+        }
+        catch (Exception e){
+            // ignore: tried to stop a non-existent preview
+        }
     }
 
     @Override
@@ -144,6 +145,18 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
             mCamera.setPreviewDisplay(holder);
             mCamera.setPreviewCallback(this);
             //setCameraDisplayOrientation(mActivity, -1, mCamera);
+            /*
+            Camera.Parameters parameters = mCamera.getParameters();
+            List<Camera.Size> previewSizes = parameters.getSupportedPreviewSizes();
+            Collections.sort(previewSizes, new Comparator<Camera.Size>(){
+                public int compare(Camera.Size size1, Camera.Size size2) {
+                    return size2.width - size1.width;
+                }
+            });
+            mHSize = mCamera.new Size(previewSizes.get(0).width, previewSizes.get(0).height);
+            mVSize = mCamera.new Size(previewSizes.get(0).height, previewSizes.get(0).width);
+            Log.i(TAG, "surfaceCreated: h_w:"+mHSize.width+", h_h:"+mHSize.height+", v_w:"+mVSize.width+", v_h:"+mVSize.height);
+            */
         }
         catch (IOException e)
         {
@@ -173,27 +186,40 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
             // ignore: tried to stop a non-existent preview
         }
 
+        bChangingSize = true;
         // set preview size and make any resize, rotate or
         // reformatting changes here
+        /*
+        if(width >= height) {
+            bHorizontal = true;
+        }
+        else {
+            bHorizontal = false;
+        }
 
-        int w = MyCameraPreview.getWidth();
-        int h = MyCameraPreview.getHeight();
-        setNewSize(w, h);
+        int w = mHSize.width;
+        int h = mHSize.height;
+        if(!bHorizontal) {
+            w = mVSize.width;
+            h = mVSize.height;
+        }*/
 
-        Log.i(TAG, "surfaceChanged: i_w:"+w+", s_w:"+width+", i_h:"+h+", s_h:"+height);
+        setNewSize(width, height);
+
+        Log.i(TAG, "surfaceChanged: s_w:"+width+", s_h:"+height);
 
 
         parameters = mCamera.getParameters();
-        //List<Camera.Size> previewSizes = parameters.getSupportedPreviewSizes();
-        //previewSizes.sort()
-        // Set the camera preview size
-        //parameters.setPreviewSize(PreviewSizeWidth, PreviewSizeHeight);
+
+        parameters.setPreviewSize(width, height);
+        /*
         if(bHorizontal) {
+            //parameters.setPreviewSize(mHSize.width, mHSize.height);
             parameters.setPreviewSize(width, height);
         }
         else {
-            parameters.setPreviewSize(height, width);
-        }
+            parameters.setPreviewSize(width, height);
+        }*/
         // Set the take picture size, you can set the large size of the camera supported.
         //parameters.setPictureSize(PreviewSizeWidth, PreviewSizeHeight);
         //parameters.setPictureSize(width, height);
@@ -212,7 +238,7 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
 
         mCamera.setParameters(parameters);
 
-        setCameraDisplayOrientation(mActivity, -1, mCamera);
+        //setCameraDisplayOrientation(mActivity, -1, mCamera);
 
         // start preview with new settings
         try {
@@ -221,6 +247,7 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
             mSurfHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
             mCamera.setPreviewCallback(this);
             mCamera.startPreview();
+            bChangingSize = false;
 
         } catch (Exception e){
             Log.d(TAG, "Error starting camera preview: " + e.getMessage());
@@ -370,11 +397,8 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
             bProcessing = true;
             int w = PreviewSizeWidth;
             int h = PreviewSizeHeight;
-            if(!bHorizontal) {
-                w = PreviewSizeHeight;
-                h = PreviewSizeWidth;
-            }
-            if(w > 0 && h > 0 && w <= bitmap.getWidth() && h <= bitmap.getHeight()) {
+
+            if(w > 0 && h > 0 && w <= bitmap.getWidth() && h <= bitmap.getHeight() && !bChangingSize) {
                 //if(!bHorizontal) {
                 //    h = PreviewSizeWidth;
                 //    w = PreviewSizeHeight;
@@ -384,13 +408,13 @@ public class CameraPreview implements SurfaceHolder.Callback, Camera.PreviewCall
 
                 //Log.i(TAG, "DoImageProcessing() after: w:"+w+", h:"+h+", bmp_w:"+bitmap.getWidth()+", bmp_h:"+bitmap.getHeight());
                 bitmap.setPixels(pixels, 0, w, 0, 0, w, h);
-                if(!bHorizontal) {
+                /*if(!bHorizontal) {
                     //bitmap.setPixels(pixels, 0, w, 0, 0, w, h);
                     Matrix m = new Matrix();
                     m.postRotate(90);
                     bitmap = createBitmap(bitmap, 0, 0, w, h, m, true);
                 }
-                /*else {
+                else {
                     bitmap.setPixels(pixels, 0, w, 0, 0, w, h);
                 }*/
                 MyCameraPreview.setImageBitmap(bitmap);
