@@ -1,5 +1,5 @@
-/home/ctang/AndroidStudioProjects/M2NJNICV/app/src/main/obj/local/armeabi-v7a/objs/jnicv-process/jnicv-process.o: \
-  /home/ctang/AndroidStudioProjects/M2NJNICV/app/src/main/jni/jnicv-process.cpp \
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/AndroidStudioProjects/M2NJNICV/app/src/main/obj/local/armeabi-v7a/objs/jnicv-process/jnicv-process.o: \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/AndroidStudioProjects/M2NJNICV/app/src/main/jni/jnicv-process.cpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/opencv.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/opencv_modules.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core.hpp \
