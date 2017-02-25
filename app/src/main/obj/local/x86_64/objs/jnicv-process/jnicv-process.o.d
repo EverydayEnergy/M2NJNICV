@@ -5,17 +5,17 @@
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/cvdef.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/hal/interface.h \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstdint \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstdint \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/version.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/base.hpp \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/climits \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/climits \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/cvstd.hpp \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstring \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cctype \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cmath \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstring \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cctype \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cmath \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/ptr.inl.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/neon_utils.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/traits.hpp \
@@ -23,15 +23,15 @@
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/saturate.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/fast_math.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/types.hpp \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cfloat \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cfloat \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/mat.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/bufferpool.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/mat.inl.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/persistence.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/operations.hpp \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstdio \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstdio \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/cvstd.inl.hpp \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/complex \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/complex \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/utility.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/core_c.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/types_c.h \
@@ -46,19 +46,19 @@
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/calib3d/calib3d_c.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/flann_base.hpp \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cassert \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cassert \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/general.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/matrix.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/params.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/any.h \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/stdexcept \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/typeinfo \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/iostream \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/map \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/stdexcept \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/typeinfo \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/iostream \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/map \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/saving.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/nn_index.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/result_set.h \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/set \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/set \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/all_indices.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/kdtree_index.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/dynamic_bitset.h \
@@ -74,8 +74,8 @@
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/hierarchical_clustering_index.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/lsh_index.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/lsh_table.h \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/unordered_map \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/unordered_map \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/autotuned_index.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/ground_truth.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/index_testing.h \
@@ -94,7 +94,7 @@
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/objdetect.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/objdetect/detection_based_tracker.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/objdetect/objdetect_c.h \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/deque \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/deque \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/photo.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/photo/photo_c.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/shape.hpp \
@@ -112,9 +112,9 @@
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/stitching/detail/matchers.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/stitching/detail/motion_estimators.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/stitching/detail/util.hpp \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/list \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/list \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/stitching/detail/util_inl.hpp \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/queue \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/queue \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/stitching/detail/camera.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/stitching/detail/exposure_compensate.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/stitching/detail/seam_finders.hpp \
@@ -127,9 +127,9 @@
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/video/tracking_c.h \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab/stabilizer.hpp \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/ctime \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/ctime \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab/global_motion.hpp \
-  /home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/fstream \
+  /media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/fstream \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab/optical_flow.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab/motion_core.hpp \
   /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab/outlier_rejection.hpp \
@@ -154,27 +154,27 @@
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/hal/interface.h:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstdint:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstdint:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/version.hpp:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/base.hpp:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/climits:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/climits:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/cvstd.hpp:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstring:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstring:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cctype:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cctype:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cmath:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cmath:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/ptr.inl.hpp:
 
@@ -190,7 +190,7 @@
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/types.hpp:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cfloat:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cfloat:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/mat.hpp:
 
@@ -202,11 +202,11 @@
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/operations.hpp:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstdio:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cstdio:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/cvstd.inl.hpp:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/complex:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/complex:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/utility.hpp:
 
@@ -236,7 +236,7 @@
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/flann_base.hpp:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cassert:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cassert:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/general.h:
 
@@ -246,13 +246,13 @@
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/any.h:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/stdexcept:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/stdexcept:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/typeinfo:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/typeinfo:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/iostream:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/iostream:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/map:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/map:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/saving.h:
 
@@ -260,7 +260,7 @@
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/result_set.h:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/set:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/set:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/all_indices.h:
 
@@ -292,9 +292,9 @@
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/lsh_table.h:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/unordered_map:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/unordered_map:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/flann/autotuned_index.h:
 
@@ -332,7 +332,7 @@
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/objdetect/objdetect_c.h:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/deque:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/deque:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/photo.hpp:
 
@@ -368,11 +368,11 @@
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/stitching/detail/util.hpp:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/list:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/list:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/stitching/detail/util_inl.hpp:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/queue:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/queue:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/stitching/detail/camera.hpp:
 
@@ -398,11 +398,11 @@
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab/stabilizer.hpp:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/ctime:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/ctime:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab/global_motion.hpp:
 
-/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/fstream:
+/media/ctang/e72d17c1-377f-4efd-b7c4-f21b3c224bc2/home/ctang/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/fstream:
 
 /home/ctang/AndroidStudioProjects/OpenCV-android-sdk/sdk/native/jni/include/opencv2/videostab/optical_flow.hpp:
 
